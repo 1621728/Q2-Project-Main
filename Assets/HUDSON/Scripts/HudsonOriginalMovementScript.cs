@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OriginalMovementScript : MonoBehaviour
+public class HudsonOriginalMovementScript : MonoBehaviour
 {
     bool grounded = false;
     Rigidbody2D rb2;
