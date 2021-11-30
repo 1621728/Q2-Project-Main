@@ -25,17 +25,37 @@ public class Movement : MonoBehaviour
 
     private bool facingRight = true;
 
+    // anim stuff ---------------------------------------------------------------------------------------------
+    Animator a;
+    bool Grounded = false;
 
     // Start is called before the first frame update
     void Start()
     {
         extraJumps = extraJumpsValue;
         rb = GetComponent<Rigidbody2D>();
+        a = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // anim stuff ---------------------------------------------------------------------------------------------
+        a.SetFloat("yVelocity", rb.velocity.y);
+        Grounded = Physics2D.BoxCast(transform.position, new Vector2(0.1f, 0.1f), 0, Vector2.down, 1, LayerMask.GetMask("Ground"));
+        a.SetBool("Grounded", Grounded); // detect ground
+
+        float horizValue = Input.GetAxis("Horizontal"); //moveing/walking anim stuff
+
+        if (horizValue == 0)
+        {
+            a.SetBool("Moving", false);
+        }
+        else
+        {
+            a.SetBool("Moving", true);
+        }
+
         horizontal = Input.GetAxisRaw("Horizontal");
         if(Input.GetButtonDown("Jump") && IsGrounded() == true && extraJumps > 0) //jump function//
         {
@@ -59,18 +79,18 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (IsGrounded() == true) //double jump resset
+        if (IsGrounded() == true) // double jump resset //
         {
             extraJumps = extraJumpsValue;
         }
 
-        cayoteRemember -= Time.deltaTime;
+        cayoteRemember -= Time.deltaTime; //cayote time//
         if (IsGrounded())
         {
             cayoteRemember = cayoteTime;
         }
 
-        jumpStorage -= Time.deltaTime;
+        jumpStorage -= Time.deltaTime; 
         if (Input.GetButtonDown("Jump"))
         {
             jumpStorage = jumpStorageTime;
@@ -82,6 +102,7 @@ public class Movement : MonoBehaviour
             cayoteRemember = 0;
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
+
     }
 
     private void Flip()
@@ -100,7 +121,7 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y); //basic movement//
     }
 
-    public bool IsGrounded()
+    public bool IsGrounded() 
     {
         bool grounded = Physics2D.BoxCast(transform.position + new Vector3(0f, 0f, 0f), new Vector3(0.1f, 1f, 0f), 0, Vector2.down, 0.7f, ground);
         return grounded;
