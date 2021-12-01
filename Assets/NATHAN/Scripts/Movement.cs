@@ -57,13 +57,13 @@ public class Movement : MonoBehaviour
         }
 
         horizontal = Input.GetAxisRaw("Horizontal");
-        if(Input.GetButtonDown("Jump") && IsGrounded() == true && extraJumps > 0) //jump function//
+        if((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && IsGrounded() == true && extraJumps > 0) //jump function//
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             extraJumps--;
         }
 
-        if (Input.GetButtonDown("Jump") && IsGrounded() == false && extraJumps > 1)
+        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) ) && IsGrounded() == false && extraJumps > 1)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             extraJumps--;
@@ -71,7 +71,7 @@ public class Movement : MonoBehaviour
 
         Flip();
 
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp("Jump") || Input.GetKeyUp(KeyCode.W))
         {
             if(rb.velocity.y > 0)
             {
