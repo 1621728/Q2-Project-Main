@@ -8,6 +8,7 @@ public class DamageScript : MonoBehaviour
     public float Damage = 1;
     public PlayerHealth PH;
     public EnemyHealthScript EH;
+    public bool IsProjectile = true;
 
     // Start is called before the first frame update
     void Start()
@@ -26,14 +27,20 @@ public class DamageScript : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            PH.Health--;
+            PH.Health -= Damage;
             Debug.Log("Damage");
         }
 
         if (collision.tag == "CanTakeDamage")
         {
-            EH.Health--;
+            EH.Health -= Damage;
             Debug.Log("Enemy Damaged");
         }
+
+        if (IsProjectile == true)
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 }

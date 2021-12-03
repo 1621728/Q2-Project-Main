@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     float jumpStorageTime = 0.25f;
     private int extraJumps;
-    [SerializeField]
+    //[SerializeField]
     private int extraJumpsValue;
     [SerializeField]
     private float jumpCut = 0.5f;
@@ -57,13 +57,13 @@ public class Movement : MonoBehaviour
         }
 
         horizontal = Input.GetAxisRaw("Horizontal");
-        if((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && IsGrounded() == true && extraJumps > 0) //jump function//
+        if (Input.GetButtonDown("Jump") && IsGrounded() == true && extraJumps > 0) //jump function//
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             extraJumps--;
         }
 
-        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) ) && IsGrounded() == false && extraJumps > 1)
+        if (Input.GetButtonDown("Jump") && IsGrounded() == false && extraJumps > 1) //jump counter
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             extraJumps--;
@@ -71,7 +71,7 @@ public class Movement : MonoBehaviour
 
         Flip();
 
-        if (Input.GetButtonUp("Jump") || Input.GetKeyUp(KeyCode.W))
+        if (Input.GetButtonUp("Jump")) //jump cut
         {
             if(rb.velocity.y > 0)
             {
