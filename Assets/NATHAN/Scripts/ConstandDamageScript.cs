@@ -7,7 +7,7 @@ public class ConstandDamageScript : MonoBehaviour
     [SerializeField]
     public float Damage = 1;
     public PlayerHealth PH;
-    public EnemyHealthScript EH;
+    //public EnemyHealthScript EH;
     public int damageRate;
     public int damageRateMax;
 
@@ -15,7 +15,7 @@ public class ConstandDamageScript : MonoBehaviour
     void Start()
     {
         GetComponent<PlayerHealth>();
-        GetComponent<EnemyHealthScript>();
+        //GetComponent<EnemyHealthScript>();
 
     }
 
