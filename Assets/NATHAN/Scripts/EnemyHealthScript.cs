@@ -17,9 +17,15 @@ public class EnemyHealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Health == 0)
+        
+    }
+
+    public void TakeHit (float damage)
+    {
+        Health -= damage;
+        if (Health <= 0)
         {
-            Debug.Log("Enemy Dead");
+            //Debug.Log("Enemy Dead");
             Destroy(gameObject);
         }
     }

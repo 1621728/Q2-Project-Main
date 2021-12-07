@@ -7,14 +7,14 @@ public class DamageScript : MonoBehaviour
     [SerializeField]
     public float Damage = 1;
     public PlayerHealth PH;
-    public EnemyHealthScript EH;
+    //public EnemyHealthScript EH;
     public bool IsProjectile = true;
 
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<PlayerHealth>();
-        GetComponent<EnemyHealthScript>();
+        //GetComponent<EnemyHealthScript>();
     }
 
     // Update is called once per frame
@@ -29,18 +29,32 @@ public class DamageScript : MonoBehaviour
         {
             PH.Health -= Damage;
             Debug.Log("Damage");
+            if (IsProjectile == true)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
-        if (collision.tag == "CanTakeDamage")
+        //if (collision.tag == "CanTakeDamage")
+        //{
+        //EH.Health -= Damage;
+        //Debug.Log("Enemy Damaged");
+        //}
+
+        var enemy = collision.gameObject.GetComponent<EnemyHealthScript>();
+        if (enemy)
         {
-            EH.Health -= Damage;
+            enemy.TakeHit(Damage);
             Debug.Log("Enemy Damaged");
+            if (IsProjectile == true)
+            {
+                Destroy(this.gameObject);
+            }
         }
+    }
 
-        if (IsProjectile == true)
-        {
-            Destroy(this.gameObject);
-        }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         
     }
 }

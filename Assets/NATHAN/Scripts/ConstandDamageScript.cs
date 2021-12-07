@@ -41,15 +41,11 @@ public class ConstandDamageScript : MonoBehaviour
             
         }
 
-        if (collision.tag == "CanTakeDamage")
+        var enemy = collision.gameObject.GetComponent<EnemyHealthScript>();
+        if (enemy)
         {
-            damageRate++;
-            if (damageRate > damageRateMax)
-            {
-                EH.Health -= Damage;
-                damageRate = 0;
-                Debug.Log("Enemy Damaged");
-            }
+            enemy.TakeHit(Damage);
+            Debug.Log("Enemy Damaged");
         }
     }
 }
