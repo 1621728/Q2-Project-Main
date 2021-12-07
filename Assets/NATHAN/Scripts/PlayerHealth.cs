@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
     public float Health = 10;
     [SerializeField]
     public float StartingHealth = 10;
+    [SerializeField]
+    public float Heal = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +23,10 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("Dead");
         }
+    }
+
+    public void getHealed()
+    {
+        Health += Heal;
     }
 }
