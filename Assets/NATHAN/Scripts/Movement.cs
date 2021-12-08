@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 1f;
     Rigidbody2D rb;
+    public float fallMultiplier = 2.5f;
 
     private bool facingRight = true;
 
@@ -101,6 +102,12 @@ public class Movement : MonoBehaviour
             jumpStorage = 0;
             cayoteRemember = 0;
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
+
+        //fast fall
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
 
     }
