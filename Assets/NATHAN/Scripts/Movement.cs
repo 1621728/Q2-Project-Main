@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 1f;
     Rigidbody2D rb;
+    //fall speed increase
     public float fallMultiplier = 2.5f;
 
     private bool facingRight = true;
