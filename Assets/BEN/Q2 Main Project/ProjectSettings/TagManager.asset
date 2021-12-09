@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - WaterDroplet
+=======
+>>>>>>> origin/main
   - Universal
   - Platform
   layers:
@@ -16,7 +19,11 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - Ground
+=======
+  - 
+>>>>>>> origin/main
   - 
   - 
   - 
