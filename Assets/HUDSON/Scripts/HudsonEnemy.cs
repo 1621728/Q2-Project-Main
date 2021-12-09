@@ -51,20 +51,24 @@ public class HudsonEnemy : MonoBehaviour
     }
     void ChasePlayer()
     {
-        if(transform.position.x < player.position.x)
+        if(transform.position.x - player.position.x < -0.15f)
         {
             //enemy is to the left side of the player, so move right
             rb2d.velocity = new Vector2(moveSpeed, 0);
             transform.localScale = new Vector2(1, 1);
 
         }
-        else if (transform.position.x > player.position.x)
+        else if (transform.position.x - player.position.x > 0.15f)
 
         {
             //enemy is to the right side of the player,  so move left
             rb2d.velocity = new Vector2(-moveSpeed, 0);
             transform.localScale = new Vector2(-1, 1);
 
+        }
+        else
+        {
+            rb2d.velocity = new Vector2(0, 0);
         }
 
         //faceAnimator.Play("browmad"); NAME IS THE ANIMATION NAME AND CAN ADD LATER
