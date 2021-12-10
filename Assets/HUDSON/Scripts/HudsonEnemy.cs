@@ -80,4 +80,11 @@ public class HudsonEnemy : MonoBehaviour
         //faceAnimator.Play("brow"); NAME IS THE ANIMATION NAME AND CAN ADD LATER
 
     }
+
+    private void Flip()
+    {
+        transform.Rotate(0f, 180f, 0f);
+
+    }
+
 }
